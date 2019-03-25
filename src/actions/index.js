@@ -23,6 +23,14 @@ export const searchClear = () => {
 	}
 };
 
+export const deleteContact = contact => {
+
+	return {
+		type: 'DELETE_CONTACT',
+		payload: contact
+	}
+};
+
 
 export const fetchContacts = () => async dispatch => {
 	const response = await axios.get(BASE_URL + '/users');

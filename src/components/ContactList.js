@@ -1,35 +1,53 @@
 import React from 'react';
-import { Table } from 'reactstrap';
+import { Table , Button} from 'reactstrap';
 import { connect } from 'react-redux';
+import { deleteContact } from '../actions';
 
-const PeopleRender = (peoples) => {
-	return  peoples.map((people,index) => { return (
-		<tr key={ index }>
-			<th scope="row">{ index }</th>
-      <td>{ people.name }</td>
-      <td>{ people.email }</td>
-      <td>{ people.phone }</td>
-		</tr>
-		);}
 
-		);
-}
+
 
 class ContactList extends React.Component {
+
+ deleteClickContact (e) {
+  console.log(e);
+  this.props.deleteContact(e);
+  return; 
+}
+
+  PeopleRender (peoples) {
+  return  peoples.map((people,index) => { return (
+    <tr key={ index }>
+      <th scope="row">{ people.id }</th>
+            <td> <img src={ people.avatar } /></td>
+      <td>{ people.name }</td>
+      <td>{ people.email }</td>
+
+      <td>{ people.phone }</td>
+      <td> 
+      <Button color="info">Edit</Button>
+      <Button color="danger"  onClick={() => this.deleteClickContact(people.id)}>Delete</Button>
+      </td>
+    </tr>
+    );}
+
+    );
+}
 	render() {
 		return (
   		<Table borderless>			
         <thead>
           <tr>
             <th>#</th>
+            <th>Avatar</th>
             <th>First Name</th>
             <th>E-mail</th>
             <th>Phone</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
         
-	{PeopleRender(this.props.peoples)}
+	{this.PeopleRender(this.props.peoples)}
 
         </tbody>
       </Table>
@@ -41,4 +59,4 @@ const mapStateToProps = (state) => {
 	return {peoples: state.peoples.filter(people => people.name.includes(state.search))}
 //  return {peoples: state.peoples }
 }
-export default connect (mapStateToProps)(ContactList);
+export default connect (mapStateToProps, { deleteContact })(ContactList);
