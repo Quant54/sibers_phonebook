@@ -13,7 +13,6 @@ class AppWrapper extends React.Component {
 	state = {sort: true}  // Sorting functionality, state without redux
 	handleCheck = () => {
 		this.setState({sort: !this.state.sort});
-		console.log(this.state.sort);
 	}
 	render() {
 	 if (this.props.contacts.length === 0  ) return (<div>LOADING...</div>);
