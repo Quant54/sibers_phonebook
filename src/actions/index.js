@@ -16,6 +16,14 @@ export const addContact = contact => {
 	}
 };
 
+export const editContact = (contact, form) => {
+	return {
+		type: 'EDIT_CONTACT',
+		payload: {...form, 'id':contact}
+	}
+}
+
+
 export const searchClear = () => {
 
 	return {

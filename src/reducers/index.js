@@ -21,15 +21,31 @@ const PeoplesReducer = (state =  [], action) => {
 			];
 	}
 	else if  (action.type === 'FETCH_CONTACTS') {
-		console.log('contacts', action.payload);
 		return action.payload;
 	}
 
+	else if  (action.type === 'EDIT_CONTACT') {
+
+		let speoples = [...state];
+		 speoples.map((contact)=> {
+			if (contact.id  != action.payload.id) {
+				return			 contact;
+			  }else
+			   {	
+			   	contact.name =  action.payload.name;
+			   	contact.phone = action.payload.phone;
+			   	contact.email = action.payload.email;
+			   	return contact;
+			   	 }
+		});
+
+		 return speoples;
+
+	}
+
 	else if  (action.type === 'DELETE_CONTACT') {
-		console.log('delete contact', action.payload);
-		//var array = [...this.state];
+
 		return state.filter((contact)=> {return contact.id  !== action.payload })
-		//return state.map((contact)=> { if (contact.id != action.payload ) return contact; });
 	}	
 	else 
 		return state;

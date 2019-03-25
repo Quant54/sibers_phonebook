@@ -12,6 +12,7 @@ class ContactForm extends React.Component {
 }
 
  renderInput = ({name, input, label, placeholder, meta}) => {
+
     return (
      <FormGroup>
        <Label htmlFor ="name">{label}:</Label>
