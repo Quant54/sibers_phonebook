@@ -39,5 +39,6 @@ class ContactList extends React.Component {
 }
 const mapStateToProps = (state) => {
 	return {peoples: state.peoples.filter(people => people.name.includes(state.search))}
+//  return {peoples: state.peoples }
 }
 export default connect (mapStateToProps)(ContactList);

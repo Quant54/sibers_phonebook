@@ -5,6 +5,8 @@ import {BrowserRouter , Link, Route } from 'react-router-dom';
 import SearchForm from './SearchForm';
 import ContactList from './ContactList';
 import ContactAdd from './ContactAdd';
+import { connect } from 'react-redux';
+import { fetchContacts } from '../actions';
 
 class AppWrapper extends React.Component {
 	render() {
@@ -20,6 +22,11 @@ class AppWrapper extends React.Component {
 	}
 }
 class App extends React.Component {
+
+	componentDidMount() {
+		this.props.fetchContacts();
+		console.log("ld");
+	}
 
 	render() {
 		return (
@@ -39,5 +46,5 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default connect(null, { fetchContacts })(App);
 

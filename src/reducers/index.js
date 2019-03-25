@@ -8,12 +8,20 @@ const initialState = [
   {name: "Dmitriy", email: "dima@mail.com", phone: "+79841798148"}
 		];
 
-const PeoplesReducer = (state =  initialState, action) => {
+
+
+
+
+const PeoplesReducer = (state =  [], action) => {
 	if (action.type === 'ADD_CONTACT') {
 		return [
 			...state, 
 			action.payload
 			];
+	}
+	else if  (action.type === 'FETCH_CONTACTS') {
+		console.log('contacts', action.payload);
+		return action.payload;
 	}
 	else 
 		return state;
