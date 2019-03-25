@@ -2,7 +2,7 @@ import React from 'react';
 import ContactForm from './ContactForm';
 import  { connect } from 'react-redux';
 import { editContact } from '../actions';
-import _ from 'lodash';
+import _ from 'lodash'; //It's new library for me and I try used it, but rumors in the world tell that it has huge power.
 
 class ContactEdit extends React.Component {
 	submitForm = (formValues) => {
@@ -26,7 +26,11 @@ class ContactEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-	return {contact: state.peoples[ownProps.match.params.id]};
+	let xpeople = state.peoples.filter(( people )=>{
+		if (people.id == ownProps.match.params.id) return people;
+	});
+
+	return {contact: xpeople[0]}
 }
 
 export default connect(mapStateToProps, { editContact })(ContactEdit);

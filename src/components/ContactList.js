@@ -1,9 +1,9 @@
 import React from 'react';
-import { Table , Button, Row, Col, Card} from 'reactstrap';
+import {Button, Row, Col} from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteContact } from '../actions';
-import FontAwesome from 'react-fontawesome';
+import { deleteContact } from '../actions';   // all actions in one file:  /actions/index.js
+import FontAwesome from 'react-fontawesome';  //try to use fontawesome module...also connected cdn css in /public/index.html
 
 
 
@@ -21,7 +21,7 @@ class ContactList extends React.Component {
   return  peoples.map((people,index) => { return (
     <Row key={ index } className="bg-white p-4  border-bottom">
       <Col sm="4" md="3" xs="12" className="text-center"> 
-        <img className="rounded-circle" src={ people.avatar } />
+        <img className="rounded-circle" src={ people.avatar }  alt={people.name}/>
       </Col>
 
       <Col sm="5" md="6" xs="12" className="text-center text-sm-left">
@@ -29,21 +29,18 @@ class ContactList extends React.Component {
         <FontAwesome
         className='super-crazy-colors mr-2 text-secondary'
         name='lightbulb'
-
         style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.5)' }}
         />
         <span className="text-muted small"> #{ people.id }</span><br/>
         <FontAwesome
         className='super-crazy-colors mr-2 text-secondary'
         name='phone'
-
         style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.5)' }}
         />
         <span className="text-muted small">{ people.phone }</span><br/>
         <FontAwesome
         className='super-crazy-colors mr-2 text-secondary'
         name='envelope'
-    
         style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.5)' }}
         />
         <span className="text-muted small">{ people.email }</span>
@@ -65,13 +62,12 @@ class ContactList extends React.Component {
 	render() {
 		return (
      
-  		<Card >			
+  		<div >			
 
         
 	{this.PeopleRender(this.props.peoples)}
 
- 
-      </Card>
+      </div>
 
 		);
 	}

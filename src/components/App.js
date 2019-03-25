@@ -10,23 +10,22 @@ import { connect } from 'react-redux';
 import { fetchContacts } from '../actions';
 
 class AppWrapper extends React.Component {
-	state = {sort: true}
+	state = {sort: true}  // Sorting functionality, state without redux
 	handleCheck = () => {
 		this.setState({sort: !this.state.sort});
 		console.log(this.state.sort);
 	}
 	render() {
-	 if (this.props.contacts.length == 0  ) return (<div>LOADING...</div>);
+	 if (this.props.contacts.length === 0  ) return (<div>LOADING...</div>);
 		return (
 			<div>
-						<SearchForm />
-
-						  <Input addon type="checkbox" aria-label="Checkbox for following text input" onChange={this.handleCheck} defaultChecked={this.state.sort}  />
-						<label htmlFor="" className="pl-2"> SORT BY ABC</label>
-						<ContactList sort={this.state.sort}/>
-						<Link to="/add" >
-							<Button color="dark" className="m-5">Add New Contact</Button>
-						</Link>
+				<SearchForm />
+				<Input addon type="checkbox" aria-label="Checkbox for following text input" onChange={this.handleCheck} defaultChecked={this.state.sort} />
+				<label htmlFor="" className="pl-2" > SORT BY ABC</label>
+				<ContactList sort={this.state.sort}/>
+				<Link to="/add" >
+				<Button color="dark" className="m-5">Add New Contact</Button>
+				</Link>
 			</div>
 			);
 	}
@@ -34,7 +33,7 @@ class AppWrapper extends React.Component {
 class App extends React.Component {
 
 	componentDidMount() {
-		this.props.fetchContacts();
+		this.props.fetchContacts();  //Fetch contacts before showing the component.
 	}
 
 	render() {

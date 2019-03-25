@@ -40,7 +40,7 @@ class ContactForm extends React.Component {
 }
 
 
-const validate = (formValues) => {
+const validate = (formValues) => { //Check for empty inputs
   const errors = {};
 
   if (!formValues.name){
