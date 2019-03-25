@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col, Button, Input } from 'reactstrap';
 import {BrowserRouter , Link, Route } from 'react-router-dom';
 import SearchForm from './SearchForm';
 import ContactList from './ContactList';
@@ -10,14 +10,22 @@ import { connect } from 'react-redux';
 import { fetchContacts } from '../actions';
 
 class AppWrapper extends React.Component {
+	state = {sort: true}
+	handleCheck = () => {
+		this.setState({sort: !this.state.sort});
+		console.log(this.state.sort);
+	}
 	render() {
 	 if (this.props.contacts.length == 0  ) return (<div>LOADING...</div>);
 		return (
 			<div>
 						<SearchForm />
-						<ContactList />
+
+						  <Input addon type="checkbox" aria-label="Checkbox for following text input" onChange={this.handleCheck} defaultChecked={this.state.sort}  />
+						<label htmlFor="" className="pl-2"> SORT BY ABC</label>
+						<ContactList sort={this.state.sort}/>
 						<Link to="/add" >
-							<Button color="danger">Add</Button>
+							<Button color="dark" className="m-5">Add New Contact</Button>
 						</Link>
 			</div>
 			);
